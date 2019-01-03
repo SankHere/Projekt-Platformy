@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <div th:replace="shared/header :: header-css"/>
+    <title>Strona domowa</title>
+</head>
+<body>
+<div th:replace="shared/header :: header('home')"/>
+
+<div id="main" class="container">
+    <H1>Dane pojazdu</H1>
+    Id: <b th:text="${vehicle.id}"></b><br/>
+    Marka: <b th:text="${vehicle.name}"></b><br/>
+    Model: <b>[[${vehicle.model}]]</b><br/>
+    Cena: <b>[[${#numbers.formatDecimal(vehicle.price,3,2,'COMMA')}]]</b><br/>
+    Data produkcji: <b>[[${#dates.format(vehicle.productionDate, 'dd-MM-yyyy')}]]</b><br/>
+    Typ pojazdu: <b>[[${vehicle.vehicleType.name}]]</b><br/>
+    Wyposażenie pojazdu:
+    <span th:if="${vehicle.accessories.isEmpty()}">Brak</span>
+
+    <span th:unless="${vehicle.accessories.isEmpty()}">
+        <ul>
+            <li th:each="acc : ${vehicle.accessories}" th:text="${acc.name}"/>
+        </ul>
+    </span>
+<br/>
+    <a class="btn btn-success" href="/vehicleList.html">Wstecz</a>
+</div>
+<div th:replace="shared/footer :: footer"></div>
+</body>
+</html>
