@@ -23,8 +23,7 @@ public class RepositoriesInitializer {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private UbezpieczenieRepository ubezpieczenieRepository;
+
 
     @Bean
     InitializingBean init() {
