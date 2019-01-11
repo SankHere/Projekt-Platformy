@@ -39,6 +39,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
     @Override
     //bez adnotacji @Transactional sesja jest zamykana po wywołaniu findByUsername, co uniemożliwia dociągnięcie ról, gdyż fetch=EAGER.
     //ponadto, musi być włączone zarządzanie transakcjami @EnableTransactionManagement
@@ -62,6 +63,7 @@ public class UserServiceImpl implements UserService {
                 user.getRoles().stream().map(//mapowanie Role na GrantedAuthority
                         r -> new SimpleGrantedAuthority(r.getType().toString())
                 ).collect(Collectors.toSet());
+
 
         return new User(user.getUsername(), user.getPassword(), user.isEnabled(), true, true, true, grantedAuthorities);
     }

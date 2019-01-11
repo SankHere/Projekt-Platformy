@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.Date;
 
-/**
- * Created by grzesiek on 23.08.2017.
- */
+
 @Controller
 public class UserRegistrationFormController {
     @Autowired
@@ -34,6 +33,8 @@ public class UserRegistrationFormController {
         if (bindingResult.hasErrors()) {
             return "registrationForm";
         }
+        userForm.setDataRejestracji(new Date());
+
         userService.save(userForm);
         return "registrationSuccess";
     }

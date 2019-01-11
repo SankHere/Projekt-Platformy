@@ -51,7 +51,7 @@
 
         </ul>
 
-        <ul class="pagination" style="float: right" th:with="pageSizes = ${ {1, 2, 3, 4, 20} }">
+        <ul class="pagination" style="float: right" th:with="pageSizes = ${ {5, 10, 15, 20, 50} }">
             <li class="page-item" th:each="size : ${pageSizes}" th:classappend="${page.size == size}?'active'"
                 th:with="pageUrl=${mainUrl}+'?page=0&size='+${size}"
             >

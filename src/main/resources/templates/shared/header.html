@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <div th:fragment="header-css">
         <!-- this is header-css -->
@@ -22,14 +22,18 @@
             <li class="nav-item">
                 <a class="nav-link" th:classappend="${pageName eq 'home'}?'active'" th:href="@{/}" >Strona główna</a>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link" th:classappend="${pageName eq 'vehicleList'}?'active'" th:href="@{/vehicleList.html(all)}">Lista pojazdów</a>
+                <a class="nav-link" th:classappend="${pageName eq 'produktList'}?'active'" th:href="@{/produktList.html(all)}">Lista produktów</a>
             </li>
             <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-                 <a class="nav-link" th:classappend="${pageName eq 'vehicleForm'}?'active'"  th:href="@{/vehicleForm.html}">Nowy pojazd</a>
+                <a class="nav-link" th:classappend="${pageName eq 'vehicleForm'}?'active'"  th:href="@{/produktListForm.html}">Nowy produkt</a>
             </li>
             <li class="nav-item" sec:authorize="isAnonymous()">
-                <a class="nav-link"  th:classappend="${pageName eq 'registration'}?'active'" href="/registrationForm.html">Rejestracja</a>
+                <a class="nav-link"  th:classappend="${pageName eq 'registration'}?'active'" th:href="@{/registrationForm.html}">Rejestracja</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"  th:classappend="${pageName eq 'registration'}?'active'" th:href="@{/mojeZamowienia.html}">Moje zamowienia</a>
             </li>
         </ul>
     </div>

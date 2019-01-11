@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <div th:replace="shared/header :: header-css"/>
+
+    <title>Strona domowa</title>
+</head>
+<body class="akcesoria">
+<div th:replace="shared/header :: header('akcesoria')"/>
+
+<div id="main" class="container">
+    <H1>Dane produktu</H1>
+    Nazwa: <b th:text="${przedmiot.name}"></b><br/>
+    Cena: <b th:text="${przedmiot.price}"></b><br/>
+    Kategoria: <b th:text="${przedmiot.kategoria.name}"></b><br/>
+    Opis: <b th:text="${przedmiot.opis}"></b><br/>
+    Dodatki:
+        <span th:if="${akcesoria.isEmpty()}">Brak</span>
+
+        <span th:unless="${akcesoria.isEmpty()}">
+            <ul th:each="akcesorium : ${akcesoria}">
+                <li><b th:text="${akcesorium.name}"></b></li>
+            </ul>
+        </span>
+
+    <br/>
+    <a class="btn btn-success" href="/produktList.html">Wstecz</a>
+</div>
+<div th:replace="shared/footer :: footer"></div>
+</body>
+</html>

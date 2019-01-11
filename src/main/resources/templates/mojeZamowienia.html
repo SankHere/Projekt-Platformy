@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <div th:replace="shared/header :: header-css"/>
+
+    <title>Moje zamowienia</title>
+</head>
+<body class="card">
+<div th:replace="shared/header :: header('mojeZamowienia')"/>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>przedmiot</th>
+        <th>Ilosc</th>
+        <th>Cena</th>
+        <th>Status</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <!--<tr th:each="vehicle : ${vehicleListPage.content}">-->
+    <tr>
+
+        <td>Przedmiot</td>
+        <td>ilosc</td>
+        <td>cena</td>
+        <td>status</td>
+
+    </tr>
+
+    </tbody>
+</table>
+
+<div th:replace="shared/footer :: footer"></div>
+</body>
+</html>

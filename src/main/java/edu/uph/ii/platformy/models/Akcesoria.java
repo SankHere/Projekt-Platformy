@@ -8,30 +8,33 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import java.util.Set;
 
 
 @Entity
-@Table(name = "status")
+@Table(name = "akcesoria")
 @Getter @Setter
 @NoArgsConstructor
-public class Status {
+public class Akcesoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @NotBlank
     //@Size(min = 2, max = 30)
     @Length(min = 2, max = 30)
     private String name;
 
+    @ManyToMany(mappedBy = "akcesorias")
+    private Set<Produkt> produkts;
 
-    public Status(long id, String name) {
+    public Akcesoria(long id, String name) {
         this(name);
         this.id = id;
     }
 
-    public Status(String name) {
+    public Akcesoria(String name) {
         this.name = name;
     }
 }

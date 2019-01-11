@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="shared/header :: header-css"/>
+    <title>Rejestracja</title>
+</head>
+<body>
+<div th:replace="shared/header :: header('produktListForm')"/>
+
+<div class="card-body container">
+    <form th:method="POST" th:object="${przedmiotNowy}" th:action="@{/produktListForm.html}">
+        <fieldset>
+            <h1>Dodawanie/Edycja</h1>
+
+            <th:block th:each="e : ${#fields.detailedErrors()}">
+                <div class="alert alert-danger">
+                    <span th:text="${e.global}? '*' : ${e.fieldName}">field</span>
+                    <span th:text="${e.message}">text</span>
+                </div>
+            </th:block>
+
+            <div class="form-group">
+                <label for="name" class="bmd-label-floating">Nazwa:</label>
+                <input id="name" type="text" name="name" th:value="*{name}"
+                       class="form-control" th:classappend="${#fields.hasErrors('name')}?'is-invalid'"
+                       required="true" autofocus="true"/>
+
+                <div class="error text-danger" th:if="${#fields.hasErrors('name')}">
+                    <span th:each="err : ${#fields.errors('name')}" th:text="${err}"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="price" class="bmd-label-floating">Price:</label>
+                <input id="price" type="text" th:field="*{price}"
+                       class="form-control" th:classappend="${#fields.hasErrors('price')}?'is-invalid'"
+                       required="true"/>
+                <div class="error text-danger" th:if="${#fields.hasErrors('price')}">
+                    <p th:each="err : ${#fields.errors('price')}" th:text="${err}"></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="ilosc" class="bmd-label-floating">Ilosc:</label>
+                <input id="ilosc" type="text" th:field="*{ilosc}"
+                       class="form-control" th:classappend="${#fields.hasErrors('ilosc')}?'is-invalid'"
+                       required="true"/>
+                <div class="error text-danger" th:if="${#fields.hasErrors('ilosc')}">
+                    <p th:each="err : ${#fields.errors('ilosc')}" th:text="${err}"></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="bmd-label-floating">Kategoria:</label>
+                <select th:field="*{kategoria.id}" class="form-control"
+                        th:classappend="${#fields.hasErrors('kategoria')}?'is-invalid'">
+                    <option value="-1">--wybierz typ pojazdu--</option>
+                    <option th:each="kat : ${kategorie}"
+                            th:value="${kat.id}"
+                            th:text=" ${kat.name}"
+                    />
+                </select>
+                <div class="error text-danger" th:if="${#fields.hasErrors('kategoria.id')}">
+                    <p th:each="err : ${#fields.errors('kategoria.id')}" th:text="${err}"></p>
+                </div>
+            </div>
+
+            <!--<div class="form-group">-->
+                <!--<select th:field="*{vehicleType.id}" class="form-control"-->
+                        <!--th:classappend="${#fields.hasErrors('vehicleType.id')}?'is-invalid'">-->
+                    <!--<option value="-1">&#45;&#45;wybierz typ pojazdu&#45;&#45;</option>-->
+                    <!--<option th:each="type : ${vehicleTypes}"-->
+                            <!--th:value="${type.id}"-->
+                            <!--th:text=" ${type.name}"-->
+                    <!--/>-->
+                <!--</select>-->
+                <!--<div class="error text-danger" th:if="${#fields.hasErrors('vehicleType.id')}">-->
+                    <!--<p th:each="err : ${#fields.errors('vehicleType.id')}" th:text="${err}"></p>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div class="form-group">
+                <label for="opis" class="bmd-label-floating">Opis:</label>
+                <!--<input id="opis" type="text" th:field="*{opis}"-->
+                       <!--class="form-control" th:classappend="${#fields.hasErrors('opis')}?'is-invalid'"-->
+                       <!--required="true"/>-->
+                <textarea id="opis" type="text" th:field="*{opis}"
+                          class="form-control" th:classappend="${#fields.hasErrors('opis')}?'is-invalid'"
+                          required="true"></textarea>
+                <div class="error text-danger" th:if="${#fields.hasErrors('opis')}">
+                    <p th:each="err : ${#fields.errors('opis')}" th:text="${err}"></p>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div th:each="acc : ${a}" class='checkbox' style="left:25px;">
+                    <!--<label th:text="${acc.name}">-->
+                        <input th:id="${acc}" type="checkbox" th:field="*{akcesorias}"
+                               th:value="${acc.id}"/>
+                    <!--</label>-->
+                    <label th:text="${acc.name}" th:for="${acc}"></label>
+                </div>
+
+                <div class="error text-danger" th:if="${#fields.hasErrors('akcesorias')}">
+                    <p th:each="err : ${#fields.errors('akcesorias')}" th:text="${err}"></p>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-raised">Zapisz</button>
+        </fieldset>
+    </form>
+</div>
+
+<div th:replace="shared/footer :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <div th:replace="shared/header :: header-css"/>
+
+    <title>Strona domowa</title>
+</head>
+<body class="card">
+<div th:replace="shared/header :: header('produktList')"/>
+
+<div class="row">
+
+    <div class="col-md-2 bg-dark">
+        <nav id="header2" class="navbar navbar-expand flex-column flex-md-row">
+            <div class="navbar-nav-scroll">
+                <H3 style="color: white">Kategorie:</H3>
+                <div th:each="kategoria : ${kategoriaListPage}">
+                    <ul class="nav nav-tabs bg-dark">
+
+                        <li class="nav-item">
+                            <a class="nav-link" th:text="${kategoria.name}" th:href="@{/produktList.html(num=${kategoria.id})}" ></a>
+                        </li>
+
+                    </ul>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div id="main" class="card-body col-md-10">
+
+        <H1>LISTA PRODUKTÓW</H1>
+
+
+        <form th:method="POST" th:action="@{/produktList.html}" th:object="${searchCommand}">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <input th:field="*{phrase}" placeholder="Fraza" class="form-control"
+                           th:classappend="${#fields.hasErrors('phrase')}?'is-invalid'"/>
+                    <div class="error text-danger" th:if="${#fields.hasErrors('phrase')}">
+                        <p th:each="err : ${#fields.errors('phrase')}" th:text="${err}"></p>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+
+                    <input th:field="*{cena}" placeholder="Cena do" class="form-control"
+                           th:classappend="${#fields.hasErrors('cena')}?'is-invalid'"/>
+                    <div class="error text-danger" th:if="${#fields.hasErrors('cena')}">
+                        <p th:each="err : ${#fields.errors('cena')}" th:text="${err}"></p>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row">
+
+                <div class="form-group col-md-8"></div>
+
+                <div class="form-group col-md-2">
+                    <a th:if="${searchCommand.isEmpty() eq false or #fields.hasErrors('*')}" th:href="@{produktList.html(all)}" class="btn btn-success">
+                        <span class="glyphicon glyphicon-refresh"></span> Pokaż wszystko
+                    </a>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <button type="submit" class="btn btn-info">
+                        <span class="glyphicon glyphicon-search"></span> Wyszukaj
+                    </button>
+                </div>
+            </div>
+        </form>
+
+
+        <div th:if="${produktListPage.hasContent() eq false}">
+            <span th:if="${searchCommand.isEmpty()}">Brak produktów w bazie</span>
+            <span th:unless="${searchCommand.isEmpty()}">Brak wyników wyszukiwania</span>
+        </div>
+        <div th:if="${produktListPage.hasContent() eq true}">
+
+
+
+            <span th:if="${searchCommand.isEmpty()}">
+                Baza zawiera [[${produktListPage.totalElements}]] produktów.
+            </span>
+            <span th:unless="${searchCommand.isEmpty()}">
+                Wynik wyszukiwania: [[${produktListPage.totalElements}]] produktów.
+            </span>
+
+            <div class="row">
+                <div th:each="produkt : ${produktListPage.content}" class="col-md-2 border border-secondary mr-md-2 ml-md-2 mt-md-2 mb-md-2">
+                    <!--<div th:each="akcesorium : ${produkt.akcesorias}">-->
+                    <a th:href="@{akcesoria.html(id=${produkt.id})}">
+                        Przedmiot: <span th:text="${produkt.name}"></span><br>
+                        Cena: <span th:text="${produkt.price}"></span>zł<br>
+                        Ilość: <span th:text="${produkt.ilosc}"></span><br>
+                        Kategoria: <span th:text="${produkt.kategoria.name}"></span><br>
+                    </a>
+                    <button class="btn-success">Dodaj do koszyka</button><br>
+                    <button class="btn-info"><a th:href="@{produktListForm.html(id=${produkt.id})}">Edytuj</a></button>
+                    <button class="btn-danger"><a th:href="@{delete.html(id=${produkt.id})}">Usun</a></button>
+                </div>
+            </div>
+
+            <!--<table class="table table-hover table-bordered">-->
+
+                <!--<tbody>-->
+
+                    <!--<td th:each="produkt : ${produktListPage.content}">-->
+                        <!--<span th:text="${produkt.name}"></span><br>-->
+                        <!--<span th:text="${produkt.price}"></span><br>-->
+                        <!--<span th:text="${produkt.Kategoria.name}"></span>-->
+                    <!--</td>-->
+
+                <!--</tbody>-->
+            <!--</table>-->
+
+            <div th:replace="shared/pagination :: pager(mainUrl=@{/produktList.html}, page=${produktListPage})"></div>
+
+        </div>
+
+
+
+    </div>
+</div>
+<div th:replace="shared/footer :: footer"></div>
+</body>
+</html>

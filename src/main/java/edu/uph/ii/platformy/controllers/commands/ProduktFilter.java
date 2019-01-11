@@ -4,28 +4,25 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.util.StringUtils;
 
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 
 @Getter @Setter
-public class VehicleFilter {
+public class ProduktFilter {
 
     private String phrase;
 
-    @PositiveOrZero
-    private Float minPrice;
-
-    @PositiveOrZero
-    private Float maxPrice;
+    @Positive
+    private double cena;
 
 
     public boolean isEmpty(){
-        return StringUtils.isEmpty(phrase) && minPrice == null && minPrice == null;
+        return StringUtils.isEmpty(phrase) && cena == 0.0;
     }
 
     public void clear(){
         this.phrase = "";
-        this.minPrice = null;
-        this.maxPrice = null;
+        this.cena = 0.0;
     }
 
     public String getPhraseLIKE(){
