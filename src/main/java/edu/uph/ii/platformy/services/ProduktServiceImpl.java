@@ -51,6 +51,17 @@ public class ProduktServiceImpl implements ProduktService {
 
     }
 
+    @Override
+    public Page<Produkt> getAllProduktsKategory(String kat, Pageable pageable) {
+        Page page;
+
+        page = produktRepository.findAllProductUsingKategory(kat, pageable);
+
+        return page;
+
+    }
+
+
     @Transactional
     @Override
     public Produkt getProdukt(Long id) {

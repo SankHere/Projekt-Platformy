@@ -10,10 +10,12 @@
 <body class="card">
 <div th:replace="shared/header :: header('mojeZamowienia')"/>
 
+<H1>Moje zamówienia</H1>
+
 <table class="table table-striped">
     <thead>
     <tr>
-        <th>przedmiot</th>
+        <th>Przedmiot</th>
         <th>Ilosc</th>
         <th>Cena</th>
         <th>Status</th>
@@ -21,19 +23,24 @@
     </tr>
     </thead>
     <tbody>
-    <!--<tr th:each="vehicle : ${vehicleListPage.content}">-->
-    <tr>
+    <!--<tr th:each="zam : ${zamowienia}">-->
 
-        <td>Przedmiot</td>
-        <td>ilosc</td>
-        <td>cena</td>
-        <td>status</td>
 
-    </tr>
+        <!--<td th:text="${zam.status}"></td>-->
+        <!--<td>ilosc</td>-->
+        <!--<td>cena</td>-->
+        <!--<td>status</td>-->
+
+    <!--</tr>-->
 
     </tbody>
 </table>
-
+<div th:each="zal : ${zalogowany}">
+    <div th:text="${zal.id}"></div>
+    <div th:text="${zal.name}"></div>
+    <div th:text="${zal.surname}"></div>
+    <div th:text="${zal.email}"></div>
+</div>
 <div th:replace="shared/footer :: footer"></div>
 </body>
 </html>

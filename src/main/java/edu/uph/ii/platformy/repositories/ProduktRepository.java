@@ -28,4 +28,10 @@ public interface ProduktRepository extends JpaRepository<Produkt, Long>, JpaSpec
             "(:cena is null OR :cena >= p.price) " )
            // "AND (:max is null OR :max >= v.price)")
     Page<Produkt> findAllProductUsingFilter(@Param("phrase") String p, @Param("cena") double cena, Pageable pageable);
+
+    @Query("SELECT k FROM Produkt k WHERE " +
+            "(" +
+            ":kat is null OR :kat = '' OR "+
+            "upper(k.kategoria.name) LIKE upper(:kat) ) " )
+    Page<Produkt> findAllProductUsingKategory(@Param("kat") String kat, Pageable pageable);
 }

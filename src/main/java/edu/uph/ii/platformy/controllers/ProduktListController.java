@@ -84,6 +84,14 @@ public class ProduktListController {
         return "produktList";
     }
 
+    @GetMapping(value = "/produktList.html", params = "kat")
+    public String showProduktListKategory(Model model, Pageable pageable, @RequestParam("kat") String kat){
+
+        model.addAttribute("produktListPage", produktService.getAllProduktsKategory(kat, pageable));
+        model.addAttribute("kategoriaListPage", kategoriaRepository.findAll());
+        return "produktList";
+    }
+
 
     private String prepareQueryString(String queryString) {//np., did=20&page=2&size=20
         if (queryString.contains("&")) {

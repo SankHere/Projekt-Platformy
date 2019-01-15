@@ -1,9 +1,7 @@
 package edu.uph.ii.platformy.controllers;
 
-import edu.uph.ii.platformy.exceptions.ProduktNotFoundException;
-import edu.uph.ii.platformy.models.Akcesoria;
+
 import edu.uph.ii.platformy.models.Produkt;
-import edu.uph.ii.platformy.models.User;
 import edu.uph.ii.platformy.repositories.AkcesoriaRepository;
 import edu.uph.ii.platformy.repositories.KategoriaRepository;
 import edu.uph.ii.platformy.repositories.ProduktRepository;
@@ -14,8 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Optional;
 
 @Controller
@@ -69,12 +65,16 @@ public class ProduktListFormController {
 //    }
 
     @RequestMapping(value="/produktListForm.html", method= RequestMethod.GET)
-    public String showForm(Model model, Optional<Long> id){
+    public String showForm(Model model, @RequestParam(name = "id", required = false, defaultValue = "-1") Long id){
 
-        model.addAttribute("przedmiotNowy",
-                id.isPresent()?
-                        produktRepository.findById(id.get()):
-                        new Produkt());
+
+        if(id > 0){
+            Produkt o = produktRepository.findById(id).get();
+            model.addAttribute("przedmiotNowy", o);
+
+        }else{
+            model.addAttribute("przedmiotNowy", new Produkt());
+        }
 
         model.addAttribute("kategorie", kategoriaRepository.findAll());
         model.addAttribute("a", akcesoriaRepository.findAll());
@@ -84,14 +84,14 @@ public class ProduktListFormController {
     @PostMapping(value = "/produktListForm.html")
     public String showProduktForm(Model model, @Valid @ModelAttribute("przedmiotNowy") Produkt produktForm, BindingResult bindingResult){
 
-        if(!bindingResult.hasErrors()){
-            produktRepository.saveAndFlush(produktForm);
-            return "produktList";
-        }
+        if(bindingResult.hasErrors()){
             model.addAttribute("kategorie", kategoriaRepository.findAll());
             model.addAttribute("a", akcesoriaRepository.findAll());
 
-        return  "produktListForm";
+            return  "produktListForm";
+        }
+        produktRepository.save(produktForm);
+        return "redirect:produktList";
     }
 
 }

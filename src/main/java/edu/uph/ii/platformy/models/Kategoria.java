@@ -6,7 +6,6 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
 
@@ -20,8 +19,7 @@ public class Kategoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank
-    //@Size(min = 2, max = 30)
+
     @Length(min = 2, max = 30)
     private String name;
 

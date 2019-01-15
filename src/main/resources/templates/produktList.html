@@ -18,11 +18,9 @@
                 <H3 style="color: white">Kategorie:</H3>
                 <div th:each="kategoria : ${kategoriaListPage}">
                     <ul class="nav nav-tabs bg-dark">
-
                         <li class="nav-item">
-                            <a class="nav-link" th:text="${kategoria.name}" th:href="@{/produktList.html(num=${kategoria.id})}" ></a>
+                            <a class="nav-link" th:text="${kategoria.name}" th:href="@{/produktList.html(kat=${kategoria.name})}" ></a>
                         </li>
-
                     </ul>
                     </ul>
                 </div>
@@ -99,9 +97,9 @@
                         Ilość: <span th:text="${produkt.ilosc}"></span><br>
                         Kategoria: <span th:text="${produkt.kategoria.name}"></span><br>
                     </a>
-                    <button class="btn-success">Dodaj do koszyka</button><br>
-                    <button class="btn-info"><a th:href="@{produktListForm.html(id=${produkt.id})}">Edytuj</a></button>
-                    <button class="btn-danger"><a th:href="@{delete.html(id=${produkt.id})}">Usun</a></button>
+                    <button class="btn-success" sec:authorize="isAuthenticated()">Dodaj do koszyka</button><br>
+                    <button class="btn-info" sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{produktListForm.html(id=${produkt.id})}">Edytuj</a></button>
+                    <button class="btn-danger" sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{delete.html(id=${produkt.id})}">Usun</a></button>
                 </div>
             </div>
 

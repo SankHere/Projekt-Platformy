@@ -27,18 +27,22 @@
                 <a class="nav-link" th:classappend="${pageName eq 'produktList'}?'active'" th:href="@{/produktList.html(all)}">Lista produktów</a>
             </li>
             <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-                <a class="nav-link" th:classappend="${pageName eq 'vehicleForm'}?'active'"  th:href="@{/produktListForm.html}">Nowy produkt</a>
+                <a class="nav-link" th:classappend="${pageName eq 'produktForm'}?'active'"  th:href="@{/produktListForm.html}">Nowy produkt</a>
             </li>
             <li class="nav-item" sec:authorize="isAnonymous()">
                 <a class="nav-link"  th:classappend="${pageName eq 'registration'}?'active'" th:href="@{/registrationForm.html}">Rejestracja</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link"  th:classappend="${pageName eq 'registration'}?'active'" th:href="@{/mojeZamowienia.html}">Moje zamowienia</a>
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+                <a class="nav-link"  th:classappend="${pageName eq 'mojeZamowienia'}?'active'" th:href="@{/mojeZamowienia.html}">Moje zamowienia</a>
             </li>
         </ul>
     </div>
 
     <ul class="nav-tabs navbar-nav ml-md-auto bg-dark">
+
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+                <a class="nav-link" th:classappend="${pageName eq 'mojeKonto'}?'active'" th:href="@{/mojeKonto.html}">Moje konto</a>
+            </li>
 
             <label style="color:yellow; margin-top: 20px;" sec:authorize="isAuthenticated()">
                 Witaj <span sec:authentication="name"/>!

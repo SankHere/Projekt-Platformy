@@ -9,18 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-public interface KategoriaRepository extends JpaRepository<Kategoria, Integer>, JpaSpecificationExecutor<Kategoria> {
+public interface KategoriaRepository extends JpaRepository<Kategoria, Long>, JpaSpecificationExecutor<Kategoria> {
 
 
-        @Query("SELECT p FROM Produkt p WHERE " +
-                "(" +
-   //             ":phrase is null OR :phrase = '' OR "+
-   //             "upper(p.name) LIKE upper(:phrase) OR " +
-   //             "upper(p.opis) LIKE upper(:phrase) OR " +
-                "upper(p.kategoria.name) LIKE upper(:phrase)" +
-                ") " )//+
-    //            "AND " +
-   //             "(:cena is null OR :cena <= p.price) " )
-                // "AND (:max is null OR :max >= v.price)")
-        Page<Produkt> findAllKategoriaUsingFilter(@Param("phrase") String p, Pageable pageable);
 }

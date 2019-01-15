@@ -14,6 +14,8 @@ public interface ProduktService {
 
     Page<Produkt> getAllProdukts(ProduktFilter filter, Pageable pageable);
 
+    Page<Produkt> getAllProduktsKategory(String kat, Pageable pageable);
+
     Produkt getProdukt(Long id);
 
     void deleteProdukt(Long id);

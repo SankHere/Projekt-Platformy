@@ -6,7 +6,7 @@
     <body>
         <div id="footer" th:fragment="footer">
             <footer class="blockquote-footer">
-                © 2018 Platformy programowania
+                © 2018 Platformy programowania Sklep Zoologiczny
                     <div sec:authorize="isAuthenticated()">
                         Twoje role to:
                         <span th:each="role: ${#authentication.getAuthorities()}">

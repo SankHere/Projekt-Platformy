@@ -54,7 +54,7 @@
                 <label class="bmd-label-floating">Kategoria:</label>
                 <select th:field="*{kategoria.id}" class="form-control"
                         th:classappend="${#fields.hasErrors('kategoria')}?'is-invalid'">
-                    <option value="-1">--wybierz typ pojazdu--</option>
+                    <option value="-1">--wybierz kategorie--</option>
                     <option th:each="kat : ${kategorie}"
                             th:value="${kat.id}"
                             th:text=" ${kat.name}"

@@ -18,25 +18,16 @@ import java.util.Set;
 
 
 @Controller
-public class AkcesoriaController {
+public class MojeKontoController {
 
     @Autowired
     AkcesoriaRepository akcesoriaRepository;
     @Autowired
     ProduktRepository produktRepository;
 
-    @RequestMapping(value = "/akcesoria.html", method = RequestMethod.GET)
+    @RequestMapping(value = "/mojeKonto.html", method = RequestMethod.GET)
     public String showAkcesoria(Model model, @RequestParam("id") Long id){
 
-        Produkt przedmiot = produktRepository.findById(id).get();
-
-        Set<Akcesoria> akcesoria = przedmiot.getAkcesorias();
-        List<Akcesoria> akcesorias = new ArrayList<>();
-
-        akcesorias.addAll(akcesoria);
-
-        model.addAttribute("akcesoria", akcesoria);
-        model.addAttribute("przedmiot", przedmiot);
-        return "akcesoria";
+        return "mojeKonto";
     }
 }

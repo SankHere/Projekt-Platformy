@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Set;
 
-public interface ProduktZamowienieRepository extends JpaRepository<ProduktZamowienie, Integer> {
+public interface ProduktZamowienieRepository extends JpaRepository<ProduktZamowienie, Long> {
 
     Set<ProduktZamowienie> findAllByProdukt(Produkt produkt);
 }
