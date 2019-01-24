@@ -12,9 +12,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Optional;
 
 @Controller
+@SessionAttributes(names={"searchCommand"})
 public class ProduktListFormController {
 
     @Autowired
@@ -23,46 +23,6 @@ public class ProduktListFormController {
     ProduktRepository produktRepository;
     @Autowired
     KategoriaRepository kategoriaRepository;
-
-//    @RequestMapping(value = "/produktListForm.html", method = {RequestMethod.GET, RequestMethod.POST})
-//    public String showProductForm(Model model, @RequestParam(value = "id", required = false) Optional<Long> id) {
-//        if (id.isPresent())
-//        {
-//            Produkt przedmiotNowy = produktRepository.findById(id.get()).get();
-//            model.addAttribute("przedmiotNowy", przedmiotNowy);
-//         }else{
-////            produktRepository.saveAndFlush(produktForm);
-//              return  "produktListForm";
-////            Akcesoria akcesoria = akcesoriaRepository.find
-////            Role userRole = roleRepository.findRoleByType(Role.Types.ROLE_USER);
-////            List roles = Arrays.asList(userRole);
-////            user.setRoles(new HashSet<>(roles));
-////            user.setPassword(passwordEncoder.encode(user.getPassword()));
-////            user.setPasswordConfirm(null);//wyzerowanie jest potrzebne ze względu na walidację
-////            userRepository.saveAndFlush(user);
-//        }
-//        model.addAttribute("kategorie", kategoriaRepository.findAll());
-//        model.addAttribute("a", akcesoriaRepository.findAll());
-//        return "produktListForm";
-//    }
-//    @GetMapping(value = "/produktListForm.html")
-//    public String showProduktForm(Model model, @RequestParam(value = "id", required = false) Optional<Long>id){
-//
-//        Optional<Produkt> o = produktRepository.findById(id.get());
-//
-//        if(!o.isPresent()){
-//            return "error";
-//        }
-//
-//        Produkt przedmiotNowy = o.get();
-//        model.addAttribute("przedmiotNowy", przedmiotNowy);
-//        model.addAttribute("kategorie", kategoriaRepository.findAll());
-//        model.addAttribute("a", akcesoriaRepository.findAll());
-//        return  "produktListForm";
-//
-//
-//
-//    }
 
     @RequestMapping(value="/produktListForm.html", method= RequestMethod.GET)
     public String showForm(Model model, @RequestParam(name = "id", required = false, defaultValue = "-1") Long id){
@@ -88,10 +48,11 @@ public class ProduktListFormController {
             model.addAttribute("kategorie", kategoriaRepository.findAll());
             model.addAttribute("a", akcesoriaRepository.findAll());
 
-            return  "produktListForm";
+            return "produktListForm";
         }
+
         produktRepository.save(produktForm);
-        return "redirect:produktList";
+        return "produktList.html";
     }
 
 }

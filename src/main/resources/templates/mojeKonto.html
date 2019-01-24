@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <div th:replace="shared/header :: header-css"/>
 
+    <title>Lista Użytkowników</title>
+</head>
+<body class="card">
+<div th:replace="shared/header :: header('mojeKonto')"/>
+
+
+Tutaj informacje i zmiana konta
+<!--<div id="main" class="card-body">-->
+
+<!--<H1>Twoje oceny</H1>-->
+<!--&lt;!&ndash;<H3>Implementacja widoku z wykorzystaniem technologii szablonów Thymeleaf</H3>!&ndash;&gt;-->
+<!--<BR>-->
+<!--<table class="table table-striped">-->
+<!--<thead>-->
+<!--<tr>-->
+<!--<th>Przedmiot</th>-->
+<!--<th>Egzamin</th>-->
+<!--<th>Data egzaminu</th>-->
+<!--<th>Ocena</th>-->
+<!--</tr>-->
+<!--</thead>-->
+<!--<tbody>-->
+<!--<tr th:each="o : ${mojeOceny}">-->
+<!--<td th:text="${o.egzamin.przedmiot.name}"></td>-->
+<!--<td th:text="${o.egzamin.name}"></td>-->
+<!--<td th:text="${#dates.format(o.egzamin.dataEgzaminu, 'dd-MM-yyyy')}"></td>-->
+<!--<td th:text="${o.ocena}"></td>-->
+
+<!--</tr>-->
+<!--</tbody>-->
+<!--</table>-->
+<!--</div>-->
+
+
+<div th:replace="shared/footer :: footer"></div>
 </body>
 </html>

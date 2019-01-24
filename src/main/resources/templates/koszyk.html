@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <div th:replace="shared/header :: header-css"/>
+
+    <title>Lista Użytkowników</title>
+</head>
+<body class="card">
+<div th:replace="shared/header :: header('koszyk')"/>
+
+
+<div id="main" class="card-body">
+
+    <H1 style="text-align: center">Twoj koszyk</H1>
+    <table class="table table-light table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th>Nazwa</th>
+            <th>Opis</th>
+            <th>Kwota za sztuke</th>
+            <th>Ilosc</th>
+            <th>Opcje</th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="kosz : ${listaProduktow}">
+
+            <td th:text="${kosz.getProdukt().name}"></td>
+            <td th:text="${kosz.getProdukt().opis}"></td>
+            <td th:text="${kosz.getProdukt().price}"></td>
+            <td>
+                <form th:method="POST" th:action="@{/koszyk.html}">
+                    <input id="id" type="hidden" name="id" th:value="${kosz.getProdukt().id}"/>
+                    <input id="ilosc" type="number" name="ilosc" th:value="${kosz.getIlosc()}"/>
+                    <button type="submit" class="btn btn-primary btn-raised">Zapisz</button>
+                </form>
+
+            <td><button class="btn btn-danger btn-raised">Usun</button></td>
+
+        </tr>
+
+        </tbody>
+    </table>
+    <span style="text-align: center">
+        <H3>Całkowity koszt to: <span th:text="${kosztcalosc}"></span> zł</H3>
+        <button class="btn btn-danger btn-raised">Wyczysc koszyk</button>
+        <button class="btn btn-primary btn-raised">Złóż zamówienie</button>
+    </span>
+</div>
+
+
+<div th:replace="shared/footer :: footer"></div>
+</body>
+</html>

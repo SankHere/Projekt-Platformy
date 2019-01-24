@@ -97,7 +97,7 @@
                         Ilość: <span th:text="${produkt.ilosc}"></span><br>
                         Kategoria: <span th:text="${produkt.kategoria.name}"></span><br>
                     </a>
-                    <button class="btn-success" sec:authorize="isAuthenticated()">Dodaj do koszyka</button><br>
+                    <button class="btn-success" sec:authorize="hasRole('ROLE_USER')"><a th:href="@{koszyk.html(id=${produkt.id})}">Dodaj do koszyka</a></button><br>
                     <button class="btn-info" sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{produktListForm.html(id=${produkt.id})}">Edytuj</a></button>
                     <button class="btn-danger" sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{delete.html(id=${produkt.id})}">Usun</a></button>
                 </div>

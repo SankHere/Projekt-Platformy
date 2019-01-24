@@ -70,10 +70,6 @@ public class ProduktListController {
         return "redirect:produktList.html";
     }
 
-    public List<Akcesoria> loadAkcesoria(){
-        List<Akcesoria> akcesorias = akcesoriaRepository.findAll();
-        return akcesorias;
-    }
 
     @RequestMapping(value="/produktList.html", method = {RequestMethod.GET, RequestMethod.POST})
     public String showProduktList(Model model, @Valid @ModelAttribute("searchCommand") ProduktFilter search, BindingResult result, Pageable pageable){

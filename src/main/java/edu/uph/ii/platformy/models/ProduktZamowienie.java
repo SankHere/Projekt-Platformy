@@ -20,12 +20,6 @@ public class ProduktZamowienie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-
-    @Positive
-    @Max(1000000)
-    private Double price;
-
-    @Positive
     private int iloscProduktu;
 
     @Valid
@@ -38,13 +32,12 @@ public class ProduktZamowienie {
     @JoinColumn(name = "id_zamowienie", nullable = false)
     private Zamowienie zamowienie;
 
-    public ProduktZamowienie(long id, double price, int iloscProduktu, Produkt produkt, Zamowienie zamowienie) {
-        this(price, iloscProduktu, produkt, zamowienie);
+    public ProduktZamowienie(long id, int iloscProduktu, Produkt produkt, Zamowienie zamowienie) {
+        this(iloscProduktu, produkt, zamowienie);
         this.id = id;
     }
 
-    public ProduktZamowienie(double price, int iloscProduktu, Produkt produkt, Zamowienie zamowienie) {
-        this.price = price;
+    public ProduktZamowienie(int iloscProduktu, Produkt produkt, Zamowienie zamowienie) {
         this.iloscProduktu = iloscProduktu;
         this.produkt = produkt;
         this.zamowienie = zamowienie;

@@ -157,15 +157,15 @@ public class RepositoriesInitializer {
 
 
                     //Tworzymy ProduktZamowienie
-                    ProduktZamowienie prza1 = new ProduktZamowienie(111.43, 1 ,Pr1, za1);
+                    ProduktZamowienie prza1 = new ProduktZamowienie(1 ,Pr1, za1);
                     produktZamowienie.save(prza1);
-                    ProduktZamowienie prza2 = new ProduktZamowienie(99.43, 2, Pr4, za1);
+                    ProduktZamowienie prza2 = new ProduktZamowienie(2, Pr4, za1);
                     produktZamowienie.save(prza2);
-                    ProduktZamowienie prza3 = new ProduktZamowienie(74.43, 1, Pr2, za2);
+                    ProduktZamowienie prza3 = new ProduktZamowienie(1, Pr2, za2);
                     produktZamowienie.save(prza3);
-                    ProduktZamowienie prza4 = new ProduktZamowienie( 211.22, 1, Pr1, za2);
+                    ProduktZamowienie prza4 = new ProduktZamowienie( 1, Pr1, za2);
                     produktZamowienie.save(prza4);
-                    ProduktZamowienie prza5 = new ProduktZamowienie(111.43, 1, Pr3, za3);
+                    ProduktZamowienie prza5 = new ProduktZamowienie( 1, Pr3, za3);
                     produktZamowienie.save(prza5);
 
                 }catch(Exception e){

@@ -1,10 +1,8 @@
 package edu.uph.ii.platformy.controllers;
 
-import edu.uph.ii.platformy.controllers.commands.ProduktFilter;
 import edu.uph.ii.platformy.models.Akcesoria;
 import edu.uph.ii.platformy.models.Produkt;
 import edu.uph.ii.platformy.repositories.AkcesoriaRepository;
-import edu.uph.ii.platformy.repositories.KategoriaRepository;
 import edu.uph.ii.platformy.repositories.ProduktRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

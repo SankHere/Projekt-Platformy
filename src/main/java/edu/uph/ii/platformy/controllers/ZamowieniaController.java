@@ -39,19 +39,10 @@ public class ZamowieniaController {
 
         User zalogowany = userRepository.findByUsername(currentPrincipalName);
 
-        //Zamowienie zam = zamowienieRepository.findAllByUserId(zalogowany.getId());
 
         model.addAttribute("zalogowany", zalogowany);
        // model.addAttribute("zamowienia", zam);
         return "mojeZamowienia";
-
-
-        //String username = principal.getName();
-
-        //Zamowienie zam = zamowienieRepository.findAllByUserName(currentPrincipalName);
-
-        //ProduktZamowienie przam = produktZamowienieRepository.findAllById(zam.getId());
-
 
     }
 

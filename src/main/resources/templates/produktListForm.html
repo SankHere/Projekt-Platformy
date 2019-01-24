@@ -20,6 +20,15 @@
             </th:block>
 
             <div class="form-group">
+                <input id="id" type="hidden" name="id" th:value="*{id}"
+                       class="form-control" th:classappend="${#fields.hasErrors('id')}?'is-invalid'"/>
+
+                <div class="error text-danger" th:if="${#fields.hasErrors('id')}">
+                    <span th:each="err : ${#fields.errors('id')}" th:text="${err}"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label for="name" class="bmd-label-floating">Nazwa:</label>
                 <input id="name" type="text" name="name" th:value="*{name}"
                        class="form-control" th:classappend="${#fields.hasErrors('name')}?'is-invalid'"
@@ -65,25 +74,9 @@
                 </div>
             </div>
 
-            <!--<div class="form-group">-->
-                <!--<select th:field="*{vehicleType.id}" class="form-control"-->
-                        <!--th:classappend="${#fields.hasErrors('vehicleType.id')}?'is-invalid'">-->
-                    <!--<option value="-1">&#45;&#45;wybierz typ pojazdu&#45;&#45;</option>-->
-                    <!--<option th:each="type : ${vehicleTypes}"-->
-                            <!--th:value="${type.id}"-->
-                            <!--th:text=" ${type.name}"-->
-                    <!--/>-->
-                <!--</select>-->
-                <!--<div class="error text-danger" th:if="${#fields.hasErrors('vehicleType.id')}">-->
-                    <!--<p th:each="err : ${#fields.errors('vehicleType.id')}" th:text="${err}"></p>-->
-                <!--</div>-->
-            <!--</div>-->
 
             <div class="form-group">
                 <label for="opis" class="bmd-label-floating">Opis:</label>
-                <!--<input id="opis" type="text" th:field="*{opis}"-->
-                       <!--class="form-control" th:classappend="${#fields.hasErrors('opis')}?'is-invalid'"-->
-                       <!--required="true"/>-->
                 <textarea id="opis" type="text" th:field="*{opis}"
                           class="form-control" th:classappend="${#fields.hasErrors('opis')}?'is-invalid'"
                           required="true"></textarea>
