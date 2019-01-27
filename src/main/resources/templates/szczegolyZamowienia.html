@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <div th:replace="shared/header :: header-css"/>
+
+    <title>Szczegoly zamowienia</title>
+</head>
+<body class="card">
+<div th:replace="shared/header :: header('szczegolyZamowienia')"/>
+
+<div id="main" class="card-body">
+    <H1 style="text-align: center">Szczegóły zamówienia</H1>
+    <table class="table table-light table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th>Produkty</th>
+            <th>Opis produktu</th>
+            <th>Kategoria produktu</th>
+            <th>Ilośc</th>
+            <th>Cena za jedną sztukę</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="p : ${przedmiotZamowienie}">
+
+            <td th:text="${p.produkt.name}"></td>
+            <td th:text="${p.produkt.opis}"></td>
+            <td th:text="${p.produkt.kategoria.name}"></td>
+            <td th:text="${p.iloscProduktu}"></td>
+            <td><span th:text="${p.produkt.price}"></span> zł</td>
+
+        </tr>
+
+        </tbody>
+    </table>
+    <a class="btn btn-success btn-raised" href="/mojeZamowienia.html">Wstecz</a>
+
+</div>
+
+<div th:replace="shared/footer :: footer"></div>
+</body>
+</html>

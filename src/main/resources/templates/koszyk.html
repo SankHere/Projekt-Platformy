@@ -3,13 +3,17 @@
 <head>
     <div th:replace="shared/header :: header-css"/>
 
-    <title>Lista Użytkowników</title>
+    <title>Koszyk</title>
 </head>
 <body class="card">
 <div th:replace="shared/header :: header('koszyk')"/>
 
+    <span th:if="${listaProduktow.isEmpty()}">
+        <H1>Twój koszyk jest pusty</H1>
+    </span>
 
-<div id="main" class="card-body">
+<div th:unless="${listaProduktow.isEmpty()}" id="main" class="card-body">
+
 
     <H1 style="text-align: center">Twoj koszyk</H1>
     <table class="table table-light table-hover">
@@ -20,7 +24,6 @@
             <th>Kwota za sztuke</th>
             <th>Ilosc</th>
             <th>Opcje</th>
-
         </tr>
         </thead>
         <tbody>
@@ -29,7 +32,7 @@
 
             <td th:text="${kosz.getProdukt().name}"></td>
             <td th:text="${kosz.getProdukt().opis}"></td>
-            <td th:text="${kosz.getProdukt().price}"></td>
+            <td><span th:text="${kosz.getProdukt().price}"></span> zł </td>
             <td>
                 <form th:method="POST" th:action="@{/koszyk.html}">
                     <input id="id" type="hidden" name="id" th:value="${kosz.getProdukt().id}"/>
@@ -37,7 +40,7 @@
                     <button type="submit" class="btn btn-primary btn-raised">Zapisz</button>
                 </form>
 
-            <td><button class="btn btn-danger btn-raised">Usun</button></td>
+            <td><a th:href="@{/usunzKoszyka.html(id=${kosz.getProdukt().id})}"><button class="btn btn-danger btn-raised">Usun</button></a></td>
 
         </tr>
 
@@ -45,11 +48,10 @@
     </table>
     <span style="text-align: center">
         <H3>Całkowity koszt to: <span th:text="${kosztcalosc}"></span> zł</H3>
-        <button class="btn btn-danger btn-raised">Wyczysc koszyk</button>
-        <button class="btn btn-primary btn-raised">Złóż zamówienie</button>
+        <a th:href="@{/wyczyscKoszyk.html}"><button class="btn btn-danger btn-raised">Wyczysc koszyk</button></a>
+        <a th:href="@{/zlozZamowienie.html}"><button class="btn btn-primary btn-raised">Złóż zamówienie</button></a>
     </span>
 </div>
-
 
 <div th:replace="shared/footer :: footer"></div>
 </body>

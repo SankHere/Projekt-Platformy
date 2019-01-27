@@ -33,10 +33,6 @@ public class Produkt {
     @Max(1000000)
     private Double price;
 
-    @Positive
-    @Max(1000000)
-    private int ilosc;
-
     @Length(min = 5, max = 1000)
     private String opis;
 
@@ -53,14 +49,13 @@ public class Produkt {
     private Set<Akcesoria> akcesorias;
 
 
-    public Produkt(long id, String name, int ilosc, double price, String opis, Kategoria kategoria) {
-        this(name, ilosc, price, opis, kategoria);
+    public Produkt(long id, String name, double price, String opis, Kategoria kategoria) {
+        this(name,price, opis, kategoria);
         this.id = id;
     }
 
-    public Produkt(String name, int ilosc, double price, String opis, Kategoria kategoria) {
+    public Produkt(String name, double price, String opis, Kategoria kategoria) {
         this.name = name;
-        this.ilosc = ilosc;
         this.price = price;
         this.opis = opis;
         this.kategoria = kategoria;

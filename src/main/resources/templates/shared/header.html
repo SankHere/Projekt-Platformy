@@ -27,7 +27,10 @@
                 <a class="nav-link" th:classappend="${pageName eq 'produktList'}?'active'" th:href="@{/produktList.html(all)}">Lista produktów</a>
             </li>
             <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-                <a class="nav-link" th:classappend="${pageName eq 'produktForm'}?'active'"  th:href="@{/produktListForm.html}">Nowy produkt</a>
+                <a class="nav-link" th:classappend="${pageName eq 'nowyProdukt'}?'active'"  th:href="@{/produktListForm.html}">Nowy produkt</a>
+            </li>
+            <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                <a class="nav-link" th:classappend="${pageName eq 'akceptacjaZamowienia'}?'active'"  th:href="@{/mojeZamowienia.html}">Akceptacja zamowien</a>
             </li>
             <li class="nav-item" sec:authorize="isAnonymous()">
                 <a class="nav-link"  th:classappend="${pageName eq 'registration'}?'active'" th:href="@{/registrationForm.html}">Rejestracja</a>
@@ -36,7 +39,7 @@
                 <a class="nav-link"  th:classappend="${pageName eq 'mojeZamowienia'}?'active'" th:href="@{/mojeZamowienia.html}">Moje zamowienia</a>
             </li>
             <li class="nav-item" sec:authorize="hasRole('ROLE_USER')">
-                <a class="nav-link" th:classappend="${pageName eq 'produktForm'}?'active'"  th:href="@{/koszyk.html}">Koszyk</a>
+                <a class="nav-link" th:classappend="${pageName eq 'koszyk'}?'active'"  th:href="@{/koszyk.html}">Koszyk</a>
             </li>
             <li class="nav-item" sec:authorize="hasRole('ROLE_USER')">
                 <a class="nav-link" th:classappend="${pageName eq 'mojeKonto'}?'active'" th:href="@{/mojeKonto.html}">Moje konto</a>

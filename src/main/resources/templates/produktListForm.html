@@ -50,16 +50,6 @@
             </div>
 
             <div class="form-group">
-                <label for="ilosc" class="bmd-label-floating">Ilosc:</label>
-                <input id="ilosc" type="text" th:field="*{ilosc}"
-                       class="form-control" th:classappend="${#fields.hasErrors('ilosc')}?'is-invalid'"
-                       required="true"/>
-                <div class="error text-danger" th:if="${#fields.hasErrors('ilosc')}">
-                    <p th:each="err : ${#fields.errors('ilosc')}" th:text="${err}"></p>
-                </div>
-            </div>
-
-            <div class="form-group">
                 <label class="bmd-label-floating">Kategoria:</label>
                 <select th:field="*{kategoria.id}" class="form-control"
                         th:classappend="${#fields.hasErrors('kategoria')}?'is-invalid'">

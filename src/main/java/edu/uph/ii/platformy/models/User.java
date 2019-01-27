@@ -44,10 +44,8 @@ public class User {
     @Length(min = 2, max = 30)
     private String name;
 
-
     @NotBlank
     @Length(min = 2, max = 30)
-
     private String surname;
 
 

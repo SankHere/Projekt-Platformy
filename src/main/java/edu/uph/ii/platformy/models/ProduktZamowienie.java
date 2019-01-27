@@ -22,6 +22,8 @@ public class ProduktZamowienie {
 
     private int iloscProduktu;
 
+    private double price;
+
     @Valid
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_produkt", nullable = false)
@@ -32,13 +34,14 @@ public class ProduktZamowienie {
     @JoinColumn(name = "id_zamowienie", nullable = false)
     private Zamowienie zamowienie;
 
-    public ProduktZamowienie(long id, int iloscProduktu, Produkt produkt, Zamowienie zamowienie) {
-        this(iloscProduktu, produkt, zamowienie);
+    public ProduktZamowienie(long id, int iloscProduktu, double price, Produkt produkt, Zamowienie zamowienie) {
+        this(iloscProduktu, price, produkt, zamowienie);
         this.id = id;
     }
 
-    public ProduktZamowienie(int iloscProduktu, Produkt produkt, Zamowienie zamowienie) {
+    public ProduktZamowienie(int iloscProduktu, double price, Produkt produkt, Zamowienie zamowienie) {
         this.iloscProduktu = iloscProduktu;
+        this.price=price;
         this.produkt = produkt;
         this.zamowienie = zamowienie;
     }

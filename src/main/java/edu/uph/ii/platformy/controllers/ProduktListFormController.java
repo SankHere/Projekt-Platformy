@@ -52,7 +52,8 @@ public class ProduktListFormController {
         }
 
         produktRepository.save(produktForm);
-        return "produktList.html";
+        return "redirect:produktList.html";
+
     }
 
 }

@@ -9,32 +9,16 @@
 <div th:replace="shared/header :: header('mojeKonto')"/>
 
 
-Tutaj informacje i zmiana konta
-<!--<div id="main" class="card-body">-->
 
-<!--<H1>Twoje oceny</H1>-->
-<!--&lt;!&ndash;<H3>Implementacja widoku z wykorzystaniem technologii szablonów Thymeleaf</H3>!&ndash;&gt;-->
-<!--<BR>-->
-<!--<table class="table table-striped">-->
-<!--<thead>-->
-<!--<tr>-->
-<!--<th>Przedmiot</th>-->
-<!--<th>Egzamin</th>-->
-<!--<th>Data egzaminu</th>-->
-<!--<th>Ocena</th>-->
-<!--</tr>-->
-<!--</thead>-->
-<!--<tbody>-->
-<!--<tr th:each="o : ${mojeOceny}">-->
-<!--<td th:text="${o.egzamin.przedmiot.name}"></td>-->
-<!--<td th:text="${o.egzamin.name}"></td>-->
-<!--<td th:text="${#dates.format(o.egzamin.dataEgzaminu, 'dd-MM-yyyy')}"></td>-->
-<!--<td th:text="${o.ocena}"></td>-->
+<div id="main" class="container">
+    <H1>Informacje o koncie:</H1>
+    Imie: <b th:text="${zalogowany.name}"></b><br/>
+    Nazwisko: <b th:text="${zalogowany.surname}"></b><br/>
+    Email: <b th:text="${zalogowany.email}"></b><br/>
+    Data rejestracji: <b th:text="${#dates.format(zalogowany.dataRejestracji, 'dd-MM-yyyy')}"></b><br/>
 
-<!--</tr>-->
-<!--</tbody>-->
-<!--</table>-->
-<!--</div>-->
+    <a class="btn btn-success" href="/produktList.html">Edytuj</a>
+</div>
 
 
 <div th:replace="shared/footer :: footer"></div>

@@ -37,12 +37,6 @@ public class ProduktListController {
     private ProduktService produktService;
     @Autowired
     private KategoriaRepository kategoriaRepository;
-    @Autowired
-    private ProduktRepository produktRepository;
-    @Autowired
-    private AkcesoriaRepository akcesoriaRepository;
-    @Autowired
-    private ProduktZamowienieRepository produktZamowienieRepository;
 
 
     @Secured("IS_AUTHENTICATED_FULLY")

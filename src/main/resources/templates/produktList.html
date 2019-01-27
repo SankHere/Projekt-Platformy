@@ -94,33 +94,17 @@
                     <a th:href="@{akcesoria.html(id=${produkt.id})}">
                         Przedmiot: <span th:text="${produkt.name}"></span><br>
                         Cena: <span th:text="${produkt.price}"></span>zł<br>
-                        Ilość: <span th:text="${produkt.ilosc}"></span><br>
                         Kategoria: <span th:text="${produkt.kategoria.name}"></span><br>
                     </a>
-                    <button class="btn-success" sec:authorize="hasRole('ROLE_USER')"><a th:href="@{koszyk.html(id=${produkt.id})}">Dodaj do koszyka</a></button><br>
-                    <button class="btn-info" sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{produktListForm.html(id=${produkt.id})}">Edytuj</a></button>
-                    <button class="btn-danger" sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{delete.html(id=${produkt.id})}">Usun</a></button>
+                    <a th:href="@{koszyk.html(id=${produkt.id})}"><button class="btn-success" sec:authorize="hasRole('ROLE_USER')">Dodaj do koszyka</button></a><br>
+                    <a th:href="@{produktListForm.html(id=${produkt.id})}"><button class="btn-info" sec:authorize="hasRole('ROLE_ADMIN')">Edytuj</button></a>
+                    <a th:href="@{delete.html(id=${produkt.id})}"><button class="btn-danger" sec:authorize="hasRole('ROLE_ADMIN')">Usun</button></a>
                 </div>
             </div>
-
-            <!--<table class="table table-hover table-bordered">-->
-
-                <!--<tbody>-->
-
-                    <!--<td th:each="produkt : ${produktListPage.content}">-->
-                        <!--<span th:text="${produkt.name}"></span><br>-->
-                        <!--<span th:text="${produkt.price}"></span><br>-->
-                        <!--<span th:text="${produkt.Kategoria.name}"></span>-->
-                    <!--</td>-->
-
-                <!--</tbody>-->
-            <!--</table>-->
 
             <div th:replace="shared/pagination :: pager(mainUrl=@{/produktList.html}, page=${produktListPage})"></div>
 
         </div>
-
-
 
     </div>
 </div>

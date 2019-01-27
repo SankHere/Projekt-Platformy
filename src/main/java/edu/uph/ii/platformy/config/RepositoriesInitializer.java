@@ -88,12 +88,10 @@ public class RepositoriesInitializer {
                     akcesoriaRepository.save(Ak3);
                     Akcesoria Ak4 = new Akcesoria("Obroża");
                     akcesoriaRepository.save(Ak4);
-                    Akcesoria Ak5 = new Akcesoria("Brak");
-                    akcesoriaRepository.save(Ak5);
 
 
                     //tworzymy produkty
-                    Produkt Pr1 = new Produkt("Owczarek niemiecki", 1, 1200.00,
+                    Produkt Pr1 = new Produkt("Owczarek niemiecki", 1200.00,
                             "Owczarek niemiecki jest typem sportowca i niełatwo dotrzymać mu kroku. Poradzi " +
                                     "sobie niemal w każdej dziedzinie pracy i sportu, jego właściciel powinien " +
                                     "więc być energiczny i chętny do współdziałania. Pies tej rasy jest " +
@@ -102,7 +100,7 @@ public class RepositoriesInitializer {
                     Pr1.setAkcesorias(new HashSet<>(Arrays.asList(Ak2, Ak3)));
                     produktRepository.save(Pr1);
 
-                    Produkt Pr2 = new Produkt("Beagle", 1, 800.0,
+                    Produkt Pr2 = new Produkt("Beagle", 800.0,
                             "Beagle'e robią furorę jako psy rodzinne, choć nie zostały stworzone do " +
                                     "tej roli. Ich urok sprawia jednak, że właściciele wiele im wybaczają - " +
                                     "czasem zbyt wiele... Beagle nie lubi samotności, pozostawiony sam na " +
@@ -111,7 +109,7 @@ public class RepositoriesInitializer {
                     Pr2.setAkcesorias(new HashSet<>(Arrays.asList(Ak1, Ak4)));
                     produktRepository.save(Pr2);
 
-                    Produkt Pr3 = new Produkt("Golden Retriver", 1, 950.0,
+                    Produkt Pr3 = new Produkt("Golden Retriver", 950.0,
                             "Golden retriever może się nauczyć praktycznie wszystkiego, bo nie ma dla " +
                                     "niego większego szczęścia niż nowe zadanie od ukochanego pana. Trzeba tylko" +
                                     " pamiętać, by nie popsuć sobie z nim stosunków brakiem delikatności."
@@ -119,54 +117,45 @@ public class RepositoriesInitializer {
                     Pr3.setAkcesorias(new HashSet<>(Arrays.asList(Ak1)));
                     produktRepository.save(Pr3);
 
-                    Produkt Pr4 = new Produkt("Karma - Zdrowy pies", 45, 13.50,
+                    Produkt Pr4 = new Produkt("Karma - Zdrowy pies", 13.50,
                             "Najlepsza i najzdrowasza karma dla twojego psa", Ka2);
-                    Pr4.setAkcesorias(new HashSet<>(Arrays.asList(Ak5)));
                     produktRepository.save(Pr4);
 
-                    Produkt Pr5 = new Produkt("Karma - Zdrowy kot", 25, 11.50,
+                    Produkt Pr5 = new Produkt("Karma - Zdrowy kot", 11.50,
                             "Najlepsza i najzdrowasza karma dla twojego kota", Ka2);
-                    Pr5.setAkcesorias(new HashSet<>(Arrays.asList(Ak5)));
                     produktRepository.save(Pr5);
 
-                    Produkt Pr6 = new Produkt("Legowisko", 10, 90.00,
+                    Produkt Pr6 = new Produkt("Legowisko", 90.00,
                             "Legowisko dla twojego psa", Ka3);
-                    Pr6.setAkcesorias(new HashSet<>(Arrays.asList(Ak5)));
                     produktRepository.save(Pr6);
 
-                    Produkt Pr7 = new Produkt("Obroża", 15, 20.00,
+                    Produkt Pr7 = new Produkt("Obroża",20.00,
                             "Obroża dla twojego psa", Ka3);
-                    Pr7.setAkcesorias(new HashSet<>(Arrays.asList(Ak5)));
                     produktRepository.save(Pr7);
 
-                    Produkt Pr8 = new Produkt("Smycz", 20, 15.00,
+                    Produkt Pr8 = new Produkt("Smycz", 15.00,
                             "Smycz dla twojego psa", Ka3);
-                    Pr8.setAkcesorias(new HashSet<>(Arrays.asList(Ak5)));
                     produktRepository.save(Pr8);
 
 
                     //Tworzymy zamówienie
-                    Zamowienie za1 = new Zamowienie(user, st1);
+                    Zamowienie za1 = new Zamowienie(1900, user, st1, new Date());
                     zamowienieRepository.save(za1);
 
-                    Zamowienie za2 = new Zamowienie(user, st2);
+                    Zamowienie za2 = new Zamowienie(1500,user, st2, new Date());
                     zamowienieRepository.save(za2);
-
-                    Zamowienie za3 = new Zamowienie(user, st3);
-                    zamowienieRepository.save(za3);
 
 
                     //Tworzymy ProduktZamowienie
-                    ProduktZamowienie prza1 = new ProduktZamowienie(1 ,Pr1, za1);
+                    ProduktZamowienie prza1 = new ProduktZamowienie(1, 1100 ,Pr1, za1);
                     produktZamowienie.save(prza1);
-                    ProduktZamowienie prza2 = new ProduktZamowienie(2, Pr4, za1);
+                    ProduktZamowienie prza2 = new ProduktZamowienie(2, 800, Pr4, za1);
                     produktZamowienie.save(prza2);
-                    ProduktZamowienie prza3 = new ProduktZamowienie(1, Pr2, za2);
+                    ProduktZamowienie prza3 = new ProduktZamowienie(1, 900, Pr2, za2);
                     produktZamowienie.save(prza3);
-                    ProduktZamowienie prza4 = new ProduktZamowienie( 1, Pr1, za2);
+                    ProduktZamowienie prza4 = new ProduktZamowienie( 1, 600, Pr1, za2);
                     produktZamowienie.save(prza4);
-                    ProduktZamowienie prza5 = new ProduktZamowienie( 1, Pr3, za3);
-                    produktZamowienie.save(prza5);
+
 
                 }catch(Exception e){
                     e.printStackTrace();

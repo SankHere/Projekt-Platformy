@@ -5,42 +5,46 @@
 <head>
     <div th:replace="shared/header :: header-css"/>
 
-    <title>Moje zamowienia</title>
+    <title>Zmowienia</title>
 </head>
 <body class="card">
 <div th:replace="shared/header :: header('mojeZamowienia')"/>
 
-<H1>Moje zamówienia</H1>
+<H1 style="text-align: center">Moje zamówienia</H1>
 
-<table class="table table-striped">
-    <thead>
+<table class="table table-light table-hover">
+    <thead class="thead-dark">
     <tr>
-        <th>Przedmiot</th>
-        <th>Ilosc</th>
-        <th>Cena</th>
+        <th>Data złożenia zamówienia</th>
+        <th>Cena całego zamówienia</th>
         <th>Status</th>
+        <th>Podgląd zamówienia</th>
+        <th sec:authorize="hasRole('ROLE_ADMIN')">Opcje</th>
 
     </tr>
     </thead>
     <tbody>
-    <!--<tr th:each="zam : ${zamowienia}">-->
+    <tr th:each="zam : ${zamowienie}">
 
 
-        <!--<td th:text="${zam.status}"></td>-->
-        <!--<td>ilosc</td>-->
-        <!--<td>cena</td>-->
-        <!--<td>status</td>-->
+        <td th:text="${#dates.format(zam.dataZlozeniaZamowienia, 'dd-MM-yyyy')}"></td>
+        <td><span th:text="${zam.cenaZamowienia}"></span> zł</td>
+        <td><span style="font-size: medium" th:text="${zam.status.name}"></span></td>
+<!--        <td th:if="${zam.status.id} eq 2"><span style="font-size: medium" th:text="${zam.status.name}"></span></td>
+        <td th:if="${zam.status.id} eq 3"><span style="font-size: medium" th:text="${zam.status.name}"></span></td>-->
+        <td><a th:href="@{/szczegolyZamowienia.html(id=${zam.id})}"><button class="btn btn-info btn-raised">Zobacz szczegóły</button></a></td>
+        <td sec:authorize="hasRole('ROLE_ADMIN')">
+            <a th:href="@{/akceptacjaZamowienia.html(id=${zam.id})}">
+                <button class="btn btn-success btn-raised">Zrealizuj</button>
+            </a>
+            <a th:href="@{/odrzucenieZamowienia.html(id=${zam.id})}">
+                <button class="btn btn-danger btn-raised">Odrzuć</button>
+            </a>
+        </td>
 
-    <!--</tr>-->
-
+    </tr>
     </tbody>
 </table>
-<div th:each="zal : ${zalogowany}">
-    <div th:text="${zal.id}"></div>
-    <div th:text="${zal.name}"></div>
-    <div th:text="${zal.surname}"></div>
-    <div th:text="${zal.email}"></div>
-</div>
 <div th:replace="shared/footer :: footer"></div>
 </body>
 </html>
