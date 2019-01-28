@@ -2,6 +2,7 @@ package edu.uph.ii.platformy.config;
 
 import edu.uph.ii.platformy.models.*;
 import edu.uph.ii.platformy.repositories.*;
+import edu.uph.ii.platformy.services.StorageService;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -34,11 +35,14 @@ public class RepositoriesInitializer {
     private ZamowienieRepository zamowienieRepository;
     @Autowired
     private ProduktZamowienieRepository produktZamowienie;
-
+    @Autowired
+    private StorageService storageService;
     @Bean
     InitializingBean init() {
 
         return () -> {
+
+            storageService.init();
 
             if(roleRepository.findAll().isEmpty()==true){
                 try {
@@ -96,7 +100,7 @@ public class RepositoriesInitializer {
                                     "sobie niemal w każdej dziedzinie pracy i sportu, jego właściciel powinien " +
                                     "więc być energiczny i chętny do współdziałania. Pies tej rasy jest " +
                                     "oddany właścicielowi i lojalny wobec wszystkich członków rodziny."
-                            ,Ka1);
+                            ,Ka1, "pr1.jpg");
                     Pr1.setAkcesorias(new HashSet<>(Arrays.asList(Ak2, Ak3)));
                     produktRepository.save(Pr1);
 
@@ -105,7 +109,7 @@ public class RepositoriesInitializer {
                                     "tej roli. Ich urok sprawia jednak, że właściciele wiele im wybaczają - " +
                                     "czasem zbyt wiele... Beagle nie lubi samotności, pozostawiony sam na " +
                                     "długie godziny może psocić lub wyciem uprzykrzać życie sąsiadom."
-                            , Ka1);
+                            , Ka1, "pr2.jpg");
                     Pr2.setAkcesorias(new HashSet<>(Arrays.asList(Ak1, Ak4)));
                     produktRepository.save(Pr2);
 
@@ -113,28 +117,28 @@ public class RepositoriesInitializer {
                             "Golden retriever może się nauczyć praktycznie wszystkiego, bo nie ma dla " +
                                     "niego większego szczęścia niż nowe zadanie od ukochanego pana. Trzeba tylko" +
                                     " pamiętać, by nie popsuć sobie z nim stosunków brakiem delikatności."
-                            ,Ka1);
+                            ,Ka1, "pr3.jpg");
                     Pr3.setAkcesorias(new HashSet<>(Arrays.asList(Ak1)));
                     produktRepository.save(Pr3);
 
                     Produkt Pr4 = new Produkt("Karma - Zdrowy pies", 13.50,
-                            "Najlepsza i najzdrowasza karma dla twojego psa", Ka2);
+                            "Najlepsza i najzdrowasza karma dla twojego psa", Ka2, "pr4.jpg");
                     produktRepository.save(Pr4);
 
                     Produkt Pr5 = new Produkt("Karma - Zdrowy kot", 11.50,
-                            "Najlepsza i najzdrowasza karma dla twojego kota", Ka2);
+                            "Najlepsza i najzdrowasza karma dla twojego kota", Ka2, "pr5.jpg");
                     produktRepository.save(Pr5);
 
                     Produkt Pr6 = new Produkt("Legowisko", 90.00,
-                            "Legowisko dla twojego psa", Ka3);
+                            "Legowisko dla twojego psa", Ka3, "pr6.jpg");
                     produktRepository.save(Pr6);
 
                     Produkt Pr7 = new Produkt("Obroża",20.00,
-                            "Obroża dla twojego psa", Ka3);
+                            "Obroża dla twojego psa", Ka3, "pr7.jpg");
                     produktRepository.save(Pr7);
 
                     Produkt Pr8 = new Produkt("Smycz", 15.00,
-                            "Smycz dla twojego psa", Ka3);
+                            "Smycz dla twojego psa", Ka3, "pr8.jpg");
                     produktRepository.save(Pr8);
 
 

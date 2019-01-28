@@ -8,7 +8,7 @@
 <div th:replace="shared/header :: header('produktListForm')"/>
 
 <div class="card-body container">
-    <form th:method="POST" th:object="${przedmiotNowy}" th:action="@{/produktListForm.html}">
+    <form th:method="POST" th:object="${przedmiotNowy}" enctype="multipart/form-data" th:action="@{/produktListForm.html}">
         <fieldset>
             <h1>Dodawanie/Edycja</h1>
 
@@ -72,6 +72,17 @@
                           required="true"></textarea>
                 <div class="error text-danger" th:if="${#fields.hasErrors('opis')}">
                     <p th:each="err : ${#fields.errors('opis')}" th:text="${err}"></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="file" class="bmd-label-floating">Zdjecie:</label>
+                <input id="file" type="file" name="file" th:value="*{file}"
+                       class="form-control" th:classappend="${#fields.hasErrors('file')}?'is-invalid'"
+                       required="true" autofocus="true"/>
+
+                <div class="error text-danger" th:if="${#fields.hasErrors('file')}">
+                    <span th:each="err : ${#fields.errors('file')}" th:text="${err}"></span>
                 </div>
             </div>
 

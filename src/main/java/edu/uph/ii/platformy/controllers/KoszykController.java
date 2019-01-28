@@ -35,6 +35,7 @@ public class KoszykController {
     Set<ProduktyWKoszyku> listaWybranychProduktów = new HashSet<>();
 
     double kosztcalosc;
+
     @Secured("ROLE_USER")
     @RequestMapping(value = "/koszyk.html", method = RequestMethod.GET)
     public String mojKoszyk(Model model, @RequestParam(name = "id", required = false, defaultValue = "-1") Long id){
@@ -55,19 +56,6 @@ public class KoszykController {
             kosztcalosc = 0;
 
             return "koszyk";
-        /*}
-        else
-            {
-            for (ProduktyWKoszyku p : listaWybranychProduktów) {
-                kosztcalosc = kosztcalosc + (p.getProdukt().getPrice() * p.getIlosc());
-            }
-            model.addAttribute("listaProduktow", listaWybranychProduktów);
-            model.addAttribute("kosztcalosc", kosztcalosc);
-            kosztcalosc = 0;
-            return "koszyk";
-
-
-        }*/
     }
 
     @Secured("ROLE_USER")

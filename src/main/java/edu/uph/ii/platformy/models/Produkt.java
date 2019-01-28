@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -36,6 +37,10 @@ public class Produkt {
     @Length(min = 5, max = 1000)
     private String opis;
 
+    private String zdjecie;
+
+    @Transient
+    private MultipartFile file;
 
     @Valid
     @ManyToOne(fetch = FetchType.EAGER)
@@ -49,15 +54,16 @@ public class Produkt {
     private Set<Akcesoria> akcesorias;
 
 
-    public Produkt(long id, String name, double price, String opis, Kategoria kategoria) {
-        this(name,price, opis, kategoria);
+    public Produkt(long id, String name, double price, String opis, Kategoria kategoria, String zdjecie) {
+        this(name,price, opis, kategoria, zdjecie);
         this.id = id;
     }
 
-    public Produkt(String name, double price, String opis, Kategoria kategoria) {
+    public Produkt(String name, double price, String opis, Kategoria kategoria, String zdjecie) {
         this.name = name;
         this.price = price;
         this.opis = opis;
         this.kategoria = kategoria;
+        this.zdjecie=zdjecie;
     }
 }

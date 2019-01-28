@@ -91,6 +91,7 @@
             <div class="row">
                 <div th:each="produkt : ${produktListPage.content}" class="col-md-2 border border-secondary mr-md-2 ml-md-2 mt-md-2 mb-md-2">
                     <!--<div th:each="akcesorium : ${produkt.akcesorias}">-->
+                    <img style="height: 220px; width: 205px;" th:src="@{/files/{file}(file=${produkt.zdjecie})}" src="#" alt="nie ma zdjecia"/>
                     <a th:href="@{akcesoria.html(id=${produkt.id})}">
                         Przedmiot: <span th:text="${produkt.name}"></span><br>
                         Cena: <span th:text="${produkt.price}"></span>zł<br>

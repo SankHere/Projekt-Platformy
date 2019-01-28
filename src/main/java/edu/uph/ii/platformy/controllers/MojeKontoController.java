@@ -27,4 +27,14 @@ public class MojeKontoController {
         model.addAttribute("zalogowany", zalogowany);
         return "mojeKonto";
     }
+
+    @RequestMapping(value = "/aktywujKonto.html", method = RequestMethod.GET)
+    public String aktywujKonto(Model model, @RequestParam("id") long id){
+
+        User user = userRepository.findById(id).get();
+        user.setEnabled(true);
+        userRepository.save(user);
+
+        return "redirect:";
+    }
 }
